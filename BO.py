@@ -27,7 +27,7 @@ class BO():
         self.n_iter=n_iters
 
     # probability of improvement acquisition function
-    def EI(self,X, Xsamples,xi=0.01):
+    def EI(self,X,Xsamples,xi=0.01):
         mu, sigma = self.surrogate.predict(X, return_std=True)
         mu_sample = self.surrogate.predict(Xsamples)
 
@@ -45,12 +45,12 @@ class BO():
             ei[sigma == 0.0] = 0.0
         return ei
     
-    def opt_acq(self,X, y, model,axis):
+    def opt_acq(self,X, y,axis):
         # random search, generate random samples
         Xsamples = random(1000)
         Xsamples = Xsamples.reshape(len(Xsamples), 1)
         # calculate the acquisition function for each sample
-        eis = self.EI(Xsamples, X, model)
+        eis = self.EI(Xsamples, X)
         # locate the index of the largest scores
         self.plt_acq(axis,Xsamples,eis)
         ix = argmax(eis)
@@ -107,10 +107,8 @@ class BO():
             self.surrogate.fit(self.X, self.Y)
 
             # optimizing the acquisition function and select the next point
-            x_next = self.opt_acq(self.X,self.Y,self.surrogate,axs[1])
-            print(x_next)
-            x_next=x_next[0]
-            print(x_next)
+            x_next = self.opt_acq(self.X,self.Y,axs[1])
+
             # evaluate the next point 
             y_next = self.problem.evaluate(x_next)
                 
