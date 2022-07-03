@@ -68,6 +68,7 @@ def train_model(model, criterion, optimizer, dataloaders, dataset_sizes, num_epo
 
 
 def get_val_acc(lr,dataloaders,dataset_sizes):
+  print(lr)
   model_ft=TinyResnet()
   model_ft = model_ft.to(device)
   criterion = nn.CrossEntropyLoss()
