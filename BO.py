@@ -92,7 +92,7 @@ class BO():
 
     def Run(self):
        X = random(1).reshape(1, 1)
-       Y = asarray([self.problem.evaluate(X[0])]).reshape(len(X), 1)
+       Y = asarray([self.problem.evaluate(X[0][0])]).reshape(len(X), 1)
        self.X = X
        self.Y = Y
        fig, axs = plt.subplots(2)
