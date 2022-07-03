@@ -3,7 +3,7 @@ import copy
 import torch
 import torch.optim as optim
 import torch.nn as nn
-from .model import TinyResnet
+from model import TinyResnet
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
