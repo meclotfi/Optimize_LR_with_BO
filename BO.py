@@ -118,6 +118,7 @@ class BO():
 
             #Plot the all observations, the posterior mean, uncertainty estimate and the acquisition function after each iteration
             self.plot_surrogate(axs[0])
+            plt.show()
 
                 
             # return new data iteration by iteration
