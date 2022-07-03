@@ -88,31 +88,35 @@ class BO():
         axis.set_xlabel('Learning rate')
         axis.set_ylabel('Expected improvement')
         axis.set_title('Acquisition function')
-        axis.plot(Xsamples[arg].reshape(-1),ei[arg].reshape(-1))
+        axis.plot(Xsamples[arg].reshape(-1),ei[arg].reshape(-1),color='red')
 
     def Run(self):
+       
+       print("Select an initial lr randomly and evaluate it")
        X = random(1).reshape(1, 1)
        Y = asarray([self.problem.evaluate(X[0][0])]).reshape(len(X), 1)
        self.X = X
        self.Y = Y
+
+       # set up the figures
        fig, axs = plt.subplots(2)
        fig.set_size_inches(12,10)
        plt.subplots_adjust(left=0.1,bottom=0.1,right=0.9,top=0.9,wspace=0.4,hspace=0.4)
         
 
-       print("Begin the Run")
        for i in range(self.n_iter):
+            print("\n ================================= Iteration "+str(i)+" ===========================================")
             fig.suptitle('Plots of iteration '+str(i))
             # fitting the suurogate
-            print("Fitting the surrogate model")
+            print("1.Fitting the surrogate model")
             self.surrogate.fit(self.X, self.Y)
 
             # optimizing the acquisition function and select the next point
-            print("Optimizing the surrogate function")
+            print("2.Optimizing the surrogate function")
             x_next = self.opt_acq(self.X,self.Y,axs[1])
 
             # evaluate the next point
-            print("Evaluate the selected point (lr="+str(x_next)+")")
+            print("3.Evaluate the selected point (lr="+str(x_next)+")")
             y_next = self.problem.evaluate(x_next)
                 
             # add the point to the dataset
@@ -120,7 +124,7 @@ class BO():
             self.Y = vstack((self.Y, [[y_next]]))
 
             #Plot the all observations, the posterior mean, uncertainty estimate and the acquisition function after each iteration
-            print("Plot the results")
+            print("4.Plot the results")
             self.plot_surrogate(axs[0])
             plt.show()
 
