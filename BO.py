@@ -107,7 +107,7 @@ class BO():
             self.surrogate.fit(self.X, self.Y)
 
             # optimizing the acquisition function and select the next point
-            x_next = self.opt_acq(self.X,self.Y,self.surrogate,axs[1])[0][0]
+            x_next = self.opt_acq(self.X,self.Y,self.surrogate,axs[1])[0,0]
             
             # evaluate the next point 
             y_next = self.problem.evaluate(x_next)
