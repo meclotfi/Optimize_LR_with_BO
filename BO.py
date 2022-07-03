@@ -27,9 +27,9 @@ class BO():
         self.n_iter=n_iters
 
     # probability of improvement acquisition function
-    def EI(X, Xsamples, model,xi=0.01):
-        mu, sigma = model.predict(X, return_std=True)
-        mu_sample = model.predict(Xsamples)
+    def EI(self,X, Xsamples,xi=0.01):
+        mu, sigma = self.surrogate.predict(X, return_std=True)
+        mu_sample = self.surrogate.predict(Xsamples)
 
         sigma = sigma.reshape(-1, 1)
         
