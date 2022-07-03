@@ -9,8 +9,6 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 def train_model(model, criterion, optimizer, dataloaders, dataset_sizes, num_epochs=25):
     since = time.time()
-
-    best_model_wts = copy.deepcopy(model.state_dict())
     best_acc = 0.0
 
     for epoch in range(num_epochs):

@@ -90,6 +90,13 @@ class BO():
         axis.set_title('Acquisition function')
         axis.plot(Xsamples[arg].reshape(-1),ei[arg].reshape(-1),color='red')
 
+    def set_fig(self,iter):
+       fig, axs = plt.subplots(2)
+       fig.set_size_inches(12,10)
+       plt.subplots_adjust(left=0.1,bottom=0.1,right=0.9,top=0.9,wspace=0.4,hspace=0.4)
+       fig.suptitle('Plots of iteration '+str(iter))
+       return fig,axs
+
     def Run(self):
        
        print("Select an initial lr randomly and evaluate it")
@@ -99,14 +106,14 @@ class BO():
        self.Y = Y
 
        # set up the figures
-       fig, axs = plt.subplots(2)
-       fig.set_size_inches(12,10)
-       plt.subplots_adjust(left=0.1,bottom=0.1,right=0.9,top=0.9,wspace=0.4,hspace=0.4)
+       
         
 
        for i in range(self.n_iter):
             print("\n ================================= Iteration "+str(i)+" ===========================================")
-            fig.suptitle('Plots of iteration '+str(i))
+            
+            fig,axs=self.set_fig(i)
+
             # fitting the suurogate
             print("1.Fitting the surrogate model")
             self.surrogate.fit(self.X, self.Y)
@@ -130,4 +137,5 @@ class BO():
 
                 
             # return new data iteration by iteration
+            print(x_next,y_next)
             yield x_next, y_next
