@@ -24,7 +24,7 @@ class BO():
         self.problem=Problem()
         #initialize the surrogate
         self.surrogate = GaussianProcessRegressor()
-        self.n_iters=n_iters
+        self.n_iter=n_iters
 
     # probability of improvement acquisition function
     def EI(X, Xsamples, model,xi=0.01):
