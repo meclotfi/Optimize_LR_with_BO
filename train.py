@@ -2,6 +2,8 @@ import time
 import copy
 import torch
 import torch.optim as optim
+import torch.nn as nn
+from .model import TinyResnet
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -62,14 +64,13 @@ def train_model(model, criterion, optimizer, dataloaders, dataset_sizes, num_epo
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
     print('Best val Acc: {:4f}'.format(best_acc))
 
-    return best_acc
+    return best_acc.cpu()
 
 
-def get_val_acc():
+def get_val_acc(lr,dataloaders,dataset_sizes):
   model_ft=TinyResnet()
   model_ft = model_ft.to(device)
   criterion = nn.CrossEntropyLoss()
-  optimizer_ft = optim.Adam(model_ft.parameters(), lr=lr)
+  optimizer_ft = optim.SGD(model_ft.parameters(), lr=lr)
   acc = train_model(model_ft, criterion, optimizer_ft, dataloaders, dataset_sizes,num_epochs=3)
-  print(acc.cpu())
-  return acc.cpu()
+  return acc

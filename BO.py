@@ -6,7 +6,7 @@ from warnings import catch_warnings,simplefilter
 import matplotlib.pyplot as plt
 import numpy as np
 from train import get_val_acc
-from .dataset import get_data_loaders
+from dataset import get_data_loaders
  
 class Problem():
     def __init__(self):
