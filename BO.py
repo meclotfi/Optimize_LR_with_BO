@@ -104,12 +104,15 @@ class BO():
        for i in range(self.n_iter):
             fig.suptitle('Plots of iteration '+str(i))
             # fitting the suurogate
+            print("Fitting the surrogate model")
             self.surrogate.fit(self.X, self.Y)
 
             # optimizing the acquisition function and select the next point
+            print("Optimizing the surrogate function")
             x_next = self.opt_acq(self.X,self.Y,axs[1])
 
-            # evaluate the next point 
+            # evaluate the next point
+            print("Evaluate the selected point (lr="+str(x_next)+")")
             y_next = self.problem.evaluate(x_next)
                 
             # add the point to the dataset
@@ -117,6 +120,7 @@ class BO():
             self.Y = vstack((self.Y, [[y_next]]))
 
             #Plot the all observations, the posterior mean, uncertainty estimate and the acquisition function after each iteration
+            print("Plot the results")
             self.plot_surrogate(axs[0])
             plt.show()
 
