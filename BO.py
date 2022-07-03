@@ -52,7 +52,7 @@ class BO():
         # calculate the acquisition function for each sample
         eis = self.EI(Xsamples, X)
         # locate the index of the largest scores
-        self.plt_acq(axis,Xsamples,eis)
+        self.plot_acq(axis,Xsamples,eis)
         ix = argmax(eis)
         return Xsamples[ix, 0]
     
