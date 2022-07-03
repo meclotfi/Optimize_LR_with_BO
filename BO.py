@@ -91,8 +91,8 @@ class BO():
         axis.plot(Xsamples[arg].reshape(-1),ei[arg].reshape(-1))
 
     def Run(self):
-       X = random(1).reshape(len(X), 1)
-       Y = asarray([self.problem.evaluate(X[0])]).reshape(len(Y), 1)
+       X = random(1).reshape(1, 1)
+       Y = asarray([self.problem.evaluate(X[0])]).reshape(len(X), 1)
        self.X = X
        self.Y = Y
        fig, axs = plt.subplots(2)
@@ -100,6 +100,7 @@ class BO():
        plt.subplots_adjust(left=0.1,bottom=0.1,right=0.9,top=0.9,wspace=0.4,hspace=0.4)
         
 
+       print("Begin the Run")
        for i in range(self.n_iter):
             fig.suptitle('Plots of iteration '+str(i))
             # fitting the suurogate
