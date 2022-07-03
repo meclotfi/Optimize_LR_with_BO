@@ -51,7 +51,7 @@ class TinyResnet(nn.Module):
                 - Output Layer
     """
 
-    def __init__(self,num_layers=2,channels=[3,64,128]):
+    def __init__(self,num_layers=2,channels=[1,64,128]):
         super(TinyResnet, self).__init__()
         self.blocks=nn.ModuleList()
 
