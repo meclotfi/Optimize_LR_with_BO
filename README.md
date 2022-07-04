@@ -5,7 +5,7 @@
 
 ## How to run the program ?
 
-The program can be run using the Colab notebook in this [link](https://colab.research.google.com/drive/1ibh1bDjUVnZRzWNLbBN-ljsm23_R_L9p?authuser=2#scrollTo=LlFYgs-BopBG). In the notebook, this repos is cloned and 
+The program can be run using the Colab notebook in this [link](https://colab.research.google.com/drive/1ibh1bDjUVnZRzWNLbBN-ljsm23_R_L9p?usp=sharing). In the notebook, this repos is cloned and 
 the functions defined in it are used to run the optimization loop and show all the plots during 
 the progress of the method (observations, the posterior mean, uncertainty estimate and the acquisition function) 
 
