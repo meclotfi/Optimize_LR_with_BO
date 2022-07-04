@@ -143,8 +143,8 @@ class BO():
             self.plot_surrogate(axs[0])
             plt.show()
             if path is not None:
-                plt.savefig(path+'\Plots of iteration '+str(i)+".png")
-                print("Figure is saved at: "+path+'\Plots of iteration '+str(i)+".png")
+                fig.savefig(path+'\Plots_iteration_'+str(i)+".png")
+                print("Figure is saved at: "+path+'\Plots_iteration_'+str(i)+".png")
 
                 
             # return new data iteration by iteration
