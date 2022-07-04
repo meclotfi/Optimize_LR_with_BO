@@ -65,11 +65,11 @@ def train_model(model, criterion, optimizer, dataloaders, dataset_sizes, num_epo
     return best_acc.cpu()
 
 
-def get_val_acc(lr,dataloaders,dataset_sizes):
+def get_val_acc(lr,dataloaders,dataset_sizes,n_epochs):
   print("    Trainning starts")
   model_ft=TinyResnet()
   model_ft = model_ft.to(device)
   criterion = nn.CrossEntropyLoss()
   optimizer_ft = optim.SGD(model_ft.parameters(), lr=lr)
-  acc = train_model(model_ft, criterion, optimizer_ft, dataloaders, dataset_sizes,num_epochs=1)
+  acc = train_model(model_ft, criterion, optimizer_ft, dataloaders, dataset_sizes,num_epochs=n_epochs)
   return acc

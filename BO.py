@@ -9,13 +9,14 @@ from train import get_val_acc
 from dataset import get_data_loaders
  
 class Problem():
-    def __init__(self):
+    def __init__(self,n_epochs=5):
 
         # load the fashion mnist dataset into the pytorch data loaders
+        self.n_epochs=n_epochs
         self.dataloaders,self.dataset_sizes=get_data_loaders()
 
     def evaluate(self,lr):
-        acc=get_val_acc(lr,self.dataloaders,self.dataset_sizes)
+        acc=get_val_acc(lr,self.dataloaders,self.dataset_sizes,self.n_epochs)
         return acc
 
 class BO():
