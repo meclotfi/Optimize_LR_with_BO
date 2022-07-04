@@ -103,7 +103,7 @@ class BO():
        the optimization loop of BO 
        
         path: you can specify path to set the path where plots f each iteration will be saved, if path is None figures will not be saved
-          
+
         """
        # Select an initial lr randomly and evaluate it
        X = random(1).reshape(1, 1)
@@ -144,6 +144,7 @@ class BO():
             plt.show()
             if path is not None:
                 plt.savefig(path+'\Plots of iteration '+str(i)+".png")
+                print("Figure is saved at: "+path+'\Plots of iteration '+str(i)+".png")
 
                 
             # return new data iteration by iteration
