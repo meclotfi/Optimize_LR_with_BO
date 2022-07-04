@@ -19,9 +19,9 @@ class Problem():
         return acc
 
 class BO():
-    def __init__(self,n_iters=10):
+    def __init__(self,problem,n_iters=10):
         #
-        self.problem=Problem()
+        self.problem=problem
         #initialize the surrogate
         self.surrogate = GaussianProcessRegressor()
         self.n_iter=n_iters
@@ -62,7 +62,7 @@ class BO():
         axis.set_title('Surrogate Gaussian Model')
         
         # scatter plot of inputs and real objective function
-        axis.scatter(self.X,self.Y)
+        axis.scatter(self.X[:-1],self.Y[:-1])
         
         # line plot of the posterior mean
         Xsamples = asarray(arange(0, 1, 0.001))
@@ -119,7 +119,7 @@ class BO():
             self.surrogate.fit(self.X, self.Y)
 
             # optimizing the acquisition function and select the next point
-            print("2.Optimizing the surrogate function")
+            print("2.Optimizing the acquisition function to select the next point to evaluate")
             x_next = self.opt_acq(self.X,self.Y,axs[1])
 
             # evaluate the next point
