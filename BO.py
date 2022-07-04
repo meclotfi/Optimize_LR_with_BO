@@ -98,8 +98,13 @@ class BO():
        fig.suptitle('Plots of iteration '+str(iter))
        return fig,axs
 
-    def Run(self):
+    def Run(self,path=None):
+       """ 
+       the optimization loop of BO 
        
+        path: you can specify path to set the path where plots f each iteration will be saved, if path is None figures will not be saved
+          
+        """
        # Select an initial lr randomly and evaluate it
        X = random(1).reshape(1, 1)
        print("Select an initial lr randomly and evaluate it: lr=",X[0][0])
@@ -137,7 +142,8 @@ class BO():
             print("4.Plot the results")
             self.plot_surrogate(axs[0])
             plt.show()
-            plt.savefig('plots/Plots of iteration '+str(iter)+".png")
+            if path is not None:
+                plt.savefig(path+'\Plots of iteration '+str(i)+".png")
 
                 
             # return new data iteration by iteration
