@@ -13,7 +13,7 @@ the progress of the method (observations, the posterior mean, uncertainty estima
 
  the program contains four python files :
  - Model.py : contains the implementation of the small Resnet ( contains 2 residual network blocks)
- - dataset.py: contains the method that load into pytorch dataloaders and preproccess the images.
+ - dataset.py: contains the method that load the dataset (FashionMnist) into pytorch dataloaders and preproccess the images.
  - train.py: contains the tools to train the model and get the validation accuracy.
  - BO.py : contains the implementation of the optimization method BO (in BO class) as well as the probelm class responsible for calculating the objective using the first three files.    
 
