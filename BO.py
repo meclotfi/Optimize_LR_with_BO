@@ -137,6 +137,7 @@ class BO():
             print("4.Plot the results")
             self.plot_surrogate(axs[0])
             plt.show()
+            plt.savefig('plots/Plots of iteration '+str(iter)+".png")
 
                 
             # return new data iteration by iteration
