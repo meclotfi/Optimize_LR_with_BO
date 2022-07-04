@@ -80,7 +80,7 @@ class BO():
         axis.fill_between(Xsamples,upper_bound,lower_bound,color='gray', alpha=0.2)
 
         #Plot the last selected point 
-        axis.scatter(self.X[-1:],self.Y[-1:],color='red',marker="x")
+        axis.scatter(self.X[-1:],self.surrogate.predict(self.X[-1:]),color='red',marker="x")
     
     def plot_acq(self,axis,Xsamples,ei):
         # plot the acquisition 
