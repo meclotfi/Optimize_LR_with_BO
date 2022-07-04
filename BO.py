@@ -46,6 +46,7 @@ class BO():
         return ei
     
     def opt_acq(self,X, y,axis):
+        """ Function that optimize the acquisition function and select the next point to evaluate """
         # random search, generate random samples
         Xsamples = random(1000)
         Xsamples = Xsamples.reshape(len(Xsamples), 1)
@@ -99,19 +100,21 @@ class BO():
 
     def Run(self):
        
-       print("Select an initial lr randomly and evaluate it")
+       # Select an initial lr randomly and evaluate it
        X = random(1).reshape(1, 1)
+       print("Select an initial lr randomly and evaluate it: lr=",X[0][0])
        Y = asarray([self.problem.evaluate(X[0][0])]).reshape(len(X), 1)
        self.X = X
        self.Y = Y
 
-       # set up the figures
+       
        
         
 
        for i in range(self.n_iter):
             print("\n ================================= Iteration "+str(i)+" ===========================================")
             
+            # set up the figures
             fig,axs=self.set_fig(i)
 
             # fitting the suurogate
@@ -124,7 +127,7 @@ class BO():
 
             # evaluate the next point
             print("3.Evaluate the selected point (lr="+str(x_next)+")")
-            y_next = self.problem.evaluate(x_next)
+            y_next = self.problem.evaluate(x_next).item()
                 
             # add the point to the dataset
             self.X = vstack((self.X, [[x_next]]))
@@ -137,5 +140,5 @@ class BO():
 
                 
             # return new data iteration by iteration
-            print(x_next,y_next)
+            
             yield x_next, y_next
